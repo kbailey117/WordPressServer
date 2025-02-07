@@ -21,6 +21,7 @@ EFS -> EC2 Server
      sudo usermod -aG docker $USER
      
 # SSH Setup through Bastion to Webserver
+     sudo scp -i "bastionkey.pem" "ec2privatekey.pem" user@bastion-private-ipv4dns:~/
 # Verification of Docker & Docker-Compose Installation
      docker --version
      docker-compose --version

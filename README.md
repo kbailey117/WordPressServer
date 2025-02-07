@@ -37,8 +37,10 @@ EFS -> EC2 Server |
      tar czf repository.tar.gz "respository"
 
 # Copy the archived repository to Private EC2
-     scp -i /path/to/your/private-key.pem repository.tar.gz ubuntu@<private-instance-IP>:/home/ubuntu/mnt/efs/wordpress
-
+     scp -i /path/to/your/private-key.pem repository.tar.gz ubuntu@<private-instance-IP>:~/
+     sudo cp repository.tar.gz /mnt/efs/wordpress/repository.tar.gz
+     sudo tar xzf repository.tar.gz
+     sudo rm repository.tar.gz
 
 # Verify repository location is created
      cat /mnt/efs/wordpress

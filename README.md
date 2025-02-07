@@ -59,7 +59,4 @@ Under your hosted zone, create a record and enable "Alias" option. Choose your e
      }
 
 # SSL setup using ACM
-Request a public certificate and use your domain name
-Ensure you create the CNAME records in Route53
-Alter your ALB listening protocol to HTTPS using the previous target group
-Also set up an HTTP redirect protocol to HTTPS
+Request a public certificate and use your domain name - Ensure you create the CNAME records in Route53 - Alter your ALB listening protocol to HTTPS using the previous target group - Also set up an HTTP redirect protocol to HTTPS

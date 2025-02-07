@@ -3,6 +3,13 @@ Dockerized Wordpress server deployed on EC2 with RDS/EFS background
 
 # VPC Setup
 # Security Groups (EC2, Bastion, RDS, EFS, ALB)
+SSH -> Bastion
+Bastion -> EC2 Server
+HTTP -> ALB
+EC2 Server -> ALB
+RDS -> EC2 Server
+EFS -> EC2 Server
+
 # EC2 Bastion 
 # EC2 Webserver (public hosted to avoid NAT Gateway costs)
      #!/bin/bash

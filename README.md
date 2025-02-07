@@ -22,7 +22,7 @@ Dockerized Wordpress server deployed on EC2 with RDS/EFS background
      
 # EFS Setup
      sudo apt install nfs-common -y
-     sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport efs-name.efs.your-region-here.amazonaws.com:/ /mnt/efs/wordpress_data
+     sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport efs-name.efs.your-region-here.amazonaws.com:/ ~/mnt/efs/wordpress_data
 # RDS Setup
 # ALB Setup
 # Route 53 DNS Setup 

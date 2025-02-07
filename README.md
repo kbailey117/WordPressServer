@@ -3,7 +3,8 @@ Dockerized Wordpress server deployed on EC2 with RDS/EFS background
 
 # VPC Setup
 # Security Groups (EC2, Bastion, RDS, EFS, ALB)
-# EC2 Bastion and Webserver (public hosted)
+# EC2 Bastion 
+# Webserver (public hosted)
      #!/bin/bash
      sudo apt-get update -y
      sudo apt install docker.io -y

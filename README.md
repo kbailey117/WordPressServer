@@ -19,6 +19,7 @@ EFS -> EC2 Server
      sudo systemctl enable docker
      sudo apt install docker-compose -y
      sudo usermod -aG docker $USER
+     sudo mkdir -p /mnt/efs/wordpress_data
      
 # SSH Setup through Bastion to Webserver
      sudo scp -i "bastionkey.pem" "ec2privatekey.pem" user@bastion-private-ipv4dns:~/
@@ -32,10 +33,9 @@ EFS -> EC2 Server
      cat ~/.ssh/id_rsa.pub | clip
      
 # Clone repository
-     git clone git@github.com:username/repository.git
+     git clone git@github.com:username/repository.git /mnt/efs/wordpress
 
-# Mount location of EFS
-     mkdir mnt/efs/wordpress_data
+# Mount location of EFS verification
      cat mnt/efs/wordpress_data
      
 # EFS Setup

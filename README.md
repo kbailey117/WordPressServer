@@ -34,10 +34,11 @@ EFS -> EC2 Server
      cat ~/.ssh/id_rsa.pub | clip
      
 # Clone repository
+     cat /mnt/efs/wordpress
      git clone git@github.com:username/repository.git /mnt/efs/wordpress
 
 # Mount location of EFS verification
-     cat mnt/efs/wordpress_data
+     cat /mnt/efs/wordpress_data
      
 # EFS Setup
      sudo apt install nfs-common -y

@@ -5,7 +5,7 @@ Dockerized Wordpress server deployed on EC2 with RDS/EFS background
 # Security Groups (EC2, Bastion, RDS, EFS, ALB)
 # EC2 Bastion and Webserver (public hosted)
 # SSH Setup through Bastion to Webserver
-# Installation of Docker
+# Installation of Docker & Docker-Compose
 # Installation of Git and setup of SSH Keygen for GitHub repository pull
 # Mount location of EFS
 # EFS Setup

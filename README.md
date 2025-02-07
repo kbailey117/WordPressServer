@@ -1,5 +1,5 @@
 # WordPressServer
-Dockerized Wordpress server deployed on EC2 with RDS/EFS background
+Dockerized Wordpress server deployed on Ubuntu EC2 with RDS/EFS background
 
 # VPC Setup
 # Security Groups (EC2, Bastion, RDS, EFS, ALB)
@@ -23,19 +23,26 @@ EFS -> EC2 Server |
      sudo mkdir /mnt/efs/wordpress_data
      
 # SSH Setup through Bastion to Webserver
-     sudo scp -i "bastionkey.pem" "ec2privatekey.pem" user@bastion-private-ipv4dns:~/
+     sudo scp -i "bastionkey.pem" "ec2privatekey.pem" ubuntu@bastion-private-ipv4dns:~/
 # Verification of Docker & Docker-Compose Installation
      docker --version
      docker-compose --version
-# SSH Keygen for GitHub repository pull
+# SSH Keygen for GitHub repository pull from Bastion Host
      ssh-keygen -t rsa -b 4096 -C "your_email_here@example.com"
      eval "$(ssh-agent -s)"
      ssh-add ~/.ssh/id_rsa
-     cat ~/.ssh/id_rsa.pub | clip
-     
-# Clone repository
+     cat ~/.ssh/id_rsa.pub
+     git clone git@github.com:username/repository.git
+# Create archived repository 
+     tar czf repository.tar.gz "respository"
+
+# Copy the archived repository to Private EC2
+     scp -i /path/to/your/private-key.pem repository.tar.gz ubuntu@<private-instance-IP>:/home/ubuntu/mnt/efs/wordpress
+
+
+# Verify repository location is created
      cat /mnt/efs/wordpress
-     git clone git@github.com:username/repository.git /mnt/efs/wordpress
+     
 
 # Mount location of EFS verification
      cat /mnt/efs/wordpress_data

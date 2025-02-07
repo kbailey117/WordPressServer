@@ -15,9 +15,14 @@ Dockerized Wordpress server deployed on EC2 with RDS/EFS background
      
 # SSH Setup through Bastion to Webserver
 # Verification of Docker & Docker-Compose Installation
-# Installation of Git and setup of SSH Keygen for GitHub repository pull
+# Verify Git Installation and setup of SSH Keygen for GitHub repository pull
 # Mount location of EFS
+     mkdir mnt/efs/wordpress_data
+     cat mnt/efs/wordpress_data
+     
 # EFS Setup
+     sudo apt install nfs-common -y
+     sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport efs-name.efs.your-region-here.amazonaws.com:/ /mnt/efs/wordpress_data
 # RDS Setup
 # ALB Setup
 # Route 53 DNS Setup 

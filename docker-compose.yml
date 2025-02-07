@@ -1,47 +1,31 @@
 version: "3.8"
 
 services:
-  db:
-    image: mysql:latest
-    container_name: mysql
-    restart: always
-    environment:
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
-      MYSQL_ROOT_PASSWORD: rootpassword
-    volumes:
-      - db_data:/var/lib/mysql
-
   wordpress:
     image: wordpress:latest
     container_name: wordpress
-    depends_on:
-      - db
     restart: always
     ports:
       - "80:80"
     environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+      # The RDS endpoint should not include a protocol or trailing slash.
+      WORDPRESS_DB_HOST: "${RDS_HOST}:3306"
+      WORDPRESS_DB_USER: "${RDS_USER}"
+      WORDPRESS_DB_PASSWORD: "${RDS_PASSWORD}"
+      WORDPRESS_DB_NAME: "${RDS_DB_NAME}"
     volumes:
-      - wp_data:/var/www/html
+      # This assumes that your EFS file system is mounted on the EC2 instance at this path.
+      - /mnt/efs/wordpress_data:/var/www/html
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     container_name: phpmyadmin
-    depends_on:
-      - db
     restart: always
     ports:
       - "8080:80"
     environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: rootpassword
-
-volumes:
-  db_data:
-  wp_data:
+      # Connect phpMyAdmin to the external RDS database.
+      PMA_HOST: "${RDS_HOST}"
+      PMA_PORT: "3306"
+      # Enable arbitrary login mode so you can use any valid database credentials.
+      PMA_ARBITRARY: "1"

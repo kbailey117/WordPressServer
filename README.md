@@ -26,7 +26,14 @@ EFS -> EC2 Server
      docker --version
      docker-compose --version
 # SSH Keygen for GitHub repository pull
+     ssh-keygen -t rsa -b 4096 -C "your_email_here@example.com"
+     eval "$(ssh-agent -s)"
+     ssh-add ~/.ssh/id_rsa
+     cat ~/.ssh/id_rsa.pub | clip
+     
 # Clone repository
+     git clone git@github.com:username/repository.git
+
 # Mount location of EFS
      mkdir mnt/efs/wordpress_data
      cat mnt/efs/wordpress_data
@@ -42,12 +49,11 @@ EFS -> EC2 Server
 # RDS Setup
 Create a MySQL RDS database and make sure the unique name is put into the .env file you cloned from repository.
 # ALB Setup
-Create target group for HTTP
+Create target group for HTTP initially
 # Route 53 DNS Setup 
-
+Under your hosted zone, create a record and enable "Alias" option. Choose your endpoint, Region, and ensure you've selected your ALB.
 
 # To be inserted into wp-config.php file for SSL routing
-
      if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
           $_SERVER['HTTPS'] = 'on';
      }

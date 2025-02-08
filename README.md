@@ -4,7 +4,7 @@ Dockerized Wordpress server deployed on Ubuntu EC2 with RDS/EFS background
 # VPC Setup
 # Security Groups (EC2, Bastion, RDS, EFS, ALB)
 SSH -> Bastion |
-Bastion -> EC2 Server |
+BastionSSH -> EC2 Server |
 HTTP -> ALB |
 EC2 Server -> ALB |
 RDS -> EC2 Server |
@@ -36,7 +36,7 @@ EFS -> EC2 Server |
 # Create archived repository 
      tar czf repository.tar.gz "respository"
 
-# Copy the archived repository to Private EC2
+# Copy the archived repository to WordPress EC2
      scp -i /path/to/your/private-key.pem repository.tar.gz ubuntu@<private-instance-IP>:~/
      sudo cp repository.tar.gz /mnt/efs/wordpress/repository.tar.gz
      sudo tar xzf repository.tar.gz

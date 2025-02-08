@@ -2,6 +2,7 @@
 Dockerized Wordpress server deployed on Ubuntu EC2 with RDS/EFS background
 
 # VPC Setup
+Setup VPC with a CIDR block limitation of /26 | no NAT Gateway due to cost incursions | no S3 endpoint required | Enable DNS hostnames & resolution 
 # Security Groups (EC2, Bastion, RDS, EFS, ALB)
 SSH -> Bastion |
 BastionSSH -> EC2 Server |

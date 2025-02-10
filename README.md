@@ -15,12 +15,12 @@ EFS -> EC2 Server |
 # EC2 Webserver (private subnet to avoid NAT Gateway costs)
      #!/bin/bash
      sudo apt-get update -y
+     sudo apt install apache2 -y
      sudo apt install docker.io -y
      sudo systemctl start docker
      sudo systemctl enable docker
      sudo apt install docker-compose -y
      sudo usermod -aG docker $USER
-     sudo mkdir -p /mnt/efs/wordpress
      
 # SSH Setup through Bastion to Webserver
      sudo scp -i "bastionkey.pem" "ec2privatekey.pem" ubuntu@bastion-private-ipv4dns:~/

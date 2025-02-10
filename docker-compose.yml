@@ -13,9 +13,6 @@ services:
       WORDPRESS_DB_USER: "${RDS_USER}"
       WORDPRESS_DB_PASSWORD: "${RDS_PASSWORD}"
       WORDPRESS_DB_NAME: "${RDS_DB_NAME}"
-    volumes:
-      # This assumes that your EFS file system is mounted on the EC2 instance at this path.
-      - ~/:/var/www/html
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest

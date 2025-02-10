@@ -44,6 +44,7 @@ EFS -> EC2 Server |
      
 # RDS Setup
 Create a MySQL RDS database and make sure the unique name is put into the .env file you cloned from repository.
+MySQL | Free-tier | Disable Autoscaling of storage | Modify the DB to use dualstack communication with EC2
 
 # SSH Keygen for GitHub repository pull from Bastion Host
      ssh-keygen -t rsa -b 4096 -C "your_email_here@example.com"

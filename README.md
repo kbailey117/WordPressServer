@@ -27,6 +27,24 @@ EFS -> EC2 Server |
 # Verification of Docker & Docker-Compose Installation
      docker --version
      docker-compose --version
+
+# Verify repository location is created
+     cat /mnt/efs/wordpress
+     
+# Mount location of EFS verification
+     cat /mnt/efs/
+     
+# EFS Setup
+     sudo apt install nfs-common -y
+     sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport efs-name.efs.your-region-here.amazonaws.com:/ ~/mnt/efs/
+     dh -f
+
+     sudo nano /etc/fstab
+     fs-04e6a6e06503c054a.efs.eu-central-1.amazonaws.com:/ /home/ubuntu/mnt/efs/ nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev 0 0
+     
+# RDS Setup
+Create a MySQL RDS database and make sure the unique name is put into the .env file you cloned from repository.
+
 # SSH Keygen for GitHub repository pull from Bastion Host
      ssh-keygen -t rsa -b 4096 -C "your_email_here@example.com"
      eval "$(ssh-agent -s)"
@@ -42,23 +60,6 @@ EFS -> EC2 Server |
      sudo tar xzf repository.tar.gz
      sudo rm repository.tar.gz
 
-# Verify repository location is created
-     cat /mnt/efs/wordpress
-     
-
-# Mount location of EFS verification
-     cat /mnt/efs/
-     
-# EFS Setup
-     sudo apt install nfs-common -y
-     sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport efs-name.efs.your-region-here.amazonaws.com:/ ~/mnt/efs/
-     dh -f
-
-     sudo nano /etc/fstab
-     fs-04e6a6e06503c054a.efs.eu-central-1.amazonaws.com:/ /home/ubuntu/mnt/efs/ nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev 0 0
-     
-# RDS Setup
-Create a MySQL RDS database and make sure the unique name is put into the .env file you cloned from repository.
 # ALB Setup
 Create target group for HTTP initially
 # Route 53 DNS Setup 

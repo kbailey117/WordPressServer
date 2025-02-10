@@ -1,5 +1,5 @@
 # WordPressServer
-Dockerized Wordpress server deployed on Ubuntu EC2 with RDS/EFS background
+Dockerized Wordpress server deployed on Ubuntu EC2 with RDS background
 
 # VPC Setup
 Setup VPC with a CIDR block limitation of /26 | no NAT Gateway due to cost incursions | no S3 endpoint required | Enable DNS hostnames & resolution 
@@ -24,10 +24,10 @@ RDS -> EC2 Server ||
      sudo scp -i "bastionkey.pem" "ec2privatekey.pem" ubuntu@bastion-private-ipv4dns:~/
 # Verification of Docker & Docker-Compose Installation
      docker --version
-     docker-compose --version
+     docker-compose --versionaaaaaa
    
 # RDS Setup
-Create a MySQL RDS database and make sure the unique name is put into the .env file you cloned from repository.
+Create a MySQL RDS database and make sure the unique name is put into the .env file you cloned from repository along with 
 MySQL | Free-tier | Disable Autoscaling of storage | Modify the DB to use dualstack communication with EC2
 
 # SSH Keygen for GitHub repository pull

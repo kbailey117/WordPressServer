@@ -37,7 +37,7 @@ EFS -> EC2 Server |
 # EFS Setup
      sudo apt install nfs-common -y
      sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport efs-name.efs.your-region-here.amazonaws.com:/ ~/mnt/efs/
-     dh -f
+     df -h
 
      sudo nano /etc/fstab
      fs-04e6a6e06503c054a.efs.eu-central-1.amazonaws.com:/ /home/ubuntu/mnt/efs/ nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev 0 0

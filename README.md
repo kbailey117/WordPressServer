@@ -13,9 +13,8 @@ EFS -> EC2 Server |
 
 # EC2 Bastion 
 # EC2 Webserver (private subnet to avoid NAT Gateway costs)
-     #!/bin/bash
+   
      sudo apt-get update -y
-     sudo apt install apache2 -y
      sudo apt install docker.io -y
      sudo systemctl start docker
      sudo systemctl enable docker
@@ -30,17 +29,6 @@ EFS -> EC2 Server |
 
 # Verify repository location is created
      cat /mnt/efs/wordpress
-     
-# Mount location of EFS verification
-     cat /mnt/efs/
-     
-# EFS Setup
-     sudo apt install nfs-common -y
-     sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport your-efs-name.efs.your-aws-region.amazonaws.com:/ ~/mnt/efs/
-     df -h
-
-     sudo nano /etc/fstab
-     your-efs-name.efs.your-aws-region.amazonaws.com:/ /home/ubuntu/mnt/efs/ nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev 0 0
      
 # RDS Setup
 Create a MySQL RDS database and make sure the unique name is put into the .env file you cloned from repository.

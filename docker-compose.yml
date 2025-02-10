@@ -15,7 +15,7 @@ services:
       WORDPRESS_DB_NAME: "${RDS_DB_NAME}"
     volumes:
       # Mount a local directory to the container's web root (/var/www/html)
-      - ./wordpress:/var/www/html
+      - ~/:/var/www/html
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest

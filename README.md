@@ -38,9 +38,10 @@ MySQL | Free-tier | Disable Autoscaling of storage | Modify the DB to use dualst
      git clone git@github.com:username/repository.git
 
 # ALB Setup
-Create target group for HTTP initially
+Create target group for HTTP
+Set up security groups between EC2 and the ALB
 # Route 53 DNS Setup 
-Under your hosted zone, create a record and enable "Alias" option. Choose your endpoint, Region, and ensure you've selected your ALB.
+Under your hosted zone, create an "A" record and enable "Alias" option. Choose your endpoint, Region, and ensure you've selected your ALB.
 
 # SSL setup using ACM
 Request a public certificate and use your domain name -- Ensure you create the CNAME records in Route53 -- Alter your ALB listening protocol to HTTPS using the previous target group -- Also set up an HTTP redirect protocol to HTTPS

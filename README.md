@@ -24,7 +24,7 @@ RDS -> EC2 Server ||
      sudo scp -i "bastionkey.pem" "ec2privatekey.pem" ubuntu@bastion-private-ipv4dns:~/
 # Verification of Docker & Docker-Compose Installation
      docker --version
-     docker-compose --versionaaaaaa
+     docker-compose --version
    
 # RDS Setup
 Create a MySQL RDS database and make sure the unique name is put into the .env file you cloned from repository along with 

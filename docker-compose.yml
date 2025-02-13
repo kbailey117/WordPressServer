@@ -8,12 +8,14 @@ services:
     ports:
       - "80:80"
     environment:
+      # These variables should be defined in a .env file or in your shell.
       WORDPRESS_DB_HOST: "${RDS_HOST}:3306"
       WORDPRESS_DB_USER: "${RDS_USER}"
       WORDPRESS_DB_PASSWORD: "${RDS_PASSWORD}"
       WORDPRESS_DB_NAME: "${RDS_DB_NAME}"
     volumes:
-      - ./wordpress:/var/www/html
+      # This maps a local directory (./wordpress_data) to the container's default web root.
+      - ./wordpress_data:/var/www/html
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -22,6 +24,8 @@ services:
     ports:
       - "8080:80"
     environment:
+      # Connect phpMyAdmin to the external RDS instance.
       PMA_HOST: "${RDS_HOST}"
       PMA_PORT: "3306"
+      # Enable arbitrary login mode so you can manually enter credentials.
       PMA_ARBITRARY: "1"

@@ -8,14 +8,12 @@ services:
     ports:
       - "80:80"
     environment:
-      # The RDS endpoint should not include a protocol or trailing slash.
       WORDPRESS_DB_HOST: "${RDS_HOST}:3306"
       WORDPRESS_DB_USER: "${RDS_USER}"
       WORDPRESS_DB_PASSWORD: "${RDS_PASSWORD}"
       WORDPRESS_DB_NAME: "${RDS_DB_NAME}"
     volumes:
-      # Mount a local directory to the container's web root (/var/www/html)
-      - ./wordpress:/var/www/html/wordpress
+      - wordpress_data:/var/www/html/wordpress
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -24,8 +22,14 @@ services:
     ports:
       - "8080:80"
     environment:
-      # Connect phpMyAdmin to the external RDS database.
       PMA_HOST: "${RDS_HOST}"
       PMA_PORT: "3306"
-      # Enable arbitrary login mode so you can use any valid database credentials.
       PMA_ARBITRARY: "1"
+
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /wordpress

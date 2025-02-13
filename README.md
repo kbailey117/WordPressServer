@@ -5,8 +5,9 @@ Dockerized Wordpress server deployed on Ubuntu EC2 with RDS background
 Setup VPC with a CIDR block limitation of /26 | no NAT Gateway due to cost incursions | no S3 endpoint required | Enable DNS hostnames & resolution 
 # Security Groups (EC2, Bastion, RDS, EFS, ALB)
    ## Bastion Host: SSH into Bastion from host IP address
-   # EC2: SSH from Bastion Security Group; IP4 traffic for port 8080; MySQL traffic for port 3306 from database Security Group; All traffic from ALB Security Group
-   # ALB: 
+   ## EC2: SSH from Bastion Security Group; IP4 traffic for port 8080; MySQL traffic for port 3306 from database Security Group; All traffic from ALB Security Group
+   ## ALB: IPv4 and IPv6 traffic from anywhere
+   ## Database: MySQL traffic for port 3306 from Web Server Security Group
 
 # EC2 Bastion 
 # EC2 Webserver (public subnet with temporary inbound HTTP access for GitHub repository access)

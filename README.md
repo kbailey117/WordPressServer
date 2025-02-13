@@ -9,7 +9,11 @@ Setup VPC with a CIDR block limitation of /26 | no NAT Gateway due to cost incur
    ## ALB: IPv4 and IPv6 traffic from anywhere
    ## Database: MySQL traffic for port 3306 from Web Server Security Group
 
-# EC2 Bastion 
+# EC2 Bastion
+   ## Minimum necessary requirements for Bastion EC2.
+   
+# Temporary SSH Setup through Bastion to Webserver
+     sudo scp -i "bastionkey.pem" "ec2privatekey.pem" ubuntu@bastion-private-ipv4dns:~/
 # EC2 Webserver (public subnet with temporary inbound HTTP access for GitHub repository access)
    
      sudo apt-get update -y
@@ -18,9 +22,7 @@ Setup VPC with a CIDR block limitation of /26 | no NAT Gateway due to cost incur
      sudo systemctl enable docker
      sudo apt install docker-compose -y
      sudo usermod -aG docker $USER
-     
-# SSH Setup through Bastion to Webserver
-     sudo scp -i "bastionkey.pem" "ec2privatekey.pem" ubuntu@bastion-private-ipv4dns:~/
+    
 # Verification of Docker & Docker-Compose Installation
      docker --version
      docker-compose --version
